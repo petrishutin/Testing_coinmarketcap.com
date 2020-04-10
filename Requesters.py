@@ -17,9 +17,9 @@ class Requester(Thread):
         Requester.report_list.append(self.response)
 
 
-def cmc_multirequests(number_of_threads: int = NUMBER_OF_TREADS) -> list:
+def cmc_multirequests() -> list:
     list_of_threads = []
-    for thr in range(number_of_threads):
+    for thr in range(NUMBER_OF_TREADS):
         list_of_threads.append(Requester(str(thr)))
     while list_of_threads:  # checking if
         for thread in list_of_threads:

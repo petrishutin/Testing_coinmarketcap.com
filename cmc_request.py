@@ -58,5 +58,4 @@ def cmc_request(api_key: str) -> tuple:
 
 
 if __name__ == '__main__':
-    # API key is from 'API_KEY.txt' file. Change first string in file to test another API key.
     print(cmc_request(API_KEY))

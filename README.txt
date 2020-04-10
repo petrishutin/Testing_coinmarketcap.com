@@ -1,3 +1,8 @@
+файл тестов test_cmc_requests.py
+оптимально для тестирования в папке с проектом исполнить $: cricket-unnittest (pip install cricket-unnittest)
+
+Задание:
+
 Написать 2 теста для API сайта coinmarketcap.com.
 
 1. Получить данные о 10 тикерах с наибольшим объемом за последние 24 часа.
