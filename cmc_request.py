@@ -1,5 +1,5 @@
 """
-This module defines function and classes request coinmarketcap API with designated parameters.
+This module defines function to request coinmarketcap API with designated parameters.
 These functions are needed to get performance values and validate it in test modile.
 """
 
@@ -8,7 +8,7 @@ from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 import time
 from datetime import datetime, timedelta
-
+from settings import API_KEY
 
 
 def cmc_request(api_key: str) -> tuple:
@@ -54,11 +54,9 @@ def cmc_request(api_key: str) -> tuple:
         actual_date = True
     time_of_responce = (t2 - t1) * 1000  # returns time in msec
     size_of_responce = len(response.content)
-    return (time_of_responce, actual_date, size_of_responce)
+    return time_of_responce, actual_date, size_of_responce,
 
 
 if __name__ == '__main__':
     # API key is from 'API_KEY.txt' file. Change first string in file to test another API key.
-    with open('API_KEY.txt', 'r') as file:
-        API_KEY = file.readline()
     print(cmc_request(API_KEY))
