@@ -4,28 +4,6 @@ from cmc_request import cmc_request
 from log_database import db_req
 from datetime import datetime
 
-class Test_cmc_single_request_perfomance(ut.TestCase):
-    """ This test-case checks performance of single request with designated parameters:
-        Namber of currencies: 10
-        Sorted by volume of trade in last 24 hour.
-    """
-    with open('API_KEY.txt', 'r') as file:
-        API_KEY = file.readline()
-
-    @ut.skip
-    def test_time_of_response(self):
-        """ Checking, If time of response is less than 500 msec"""
-        self.assertLess(cmc_request(Test_cmc_single_request_perfomance.API_KEY)[0], 500)
-
-    @ut.skip
-    def test_actual_date(self):
-        """Checking if update date in response matching current date"""
-        self.assertTrue(cmc_request(Test_cmc_single_request_perfomance.API_KEY)[1])
-
-    @ut.skip
-    def test_size_of_resonse(self):
-        self.assertTrue(cmc_request(Test_cmc_single_request_perfomance.API_KEY)[1])
-
 
 class Test_cmc_multirequest(ut.TestCase):
 
