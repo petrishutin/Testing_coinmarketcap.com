@@ -19,7 +19,7 @@ def db_req(db: str, req: str) -> 'cursor or None':
 
 
 if __name__ == '__main__':
-    # shows last commit to log.
+    # shows last commit in log.
     table = db_req('log.db', 'SELECT * FROM log ORDER BY id DESC LIMIT 1;')
     print('Last fixture id:', table[0][0], 'created at:', table[0][1])
     pprint(table[0][2])

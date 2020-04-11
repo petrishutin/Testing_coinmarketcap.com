@@ -5,7 +5,7 @@ from settings import API_KEY, MAX_TIME_OF_RESPONSE, MAX_SIZE_OF_RESPONSE, USE_MO
 
 class TestCmcSingleRequestPerfomance(ut.TestCase):
     """ This test-case checks performance of single request with designated parameters:
-        Namber of currencies: 10
+        Number of currencies: 10
         Sorted by volume of trade in last 24 hour.
     """
 

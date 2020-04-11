@@ -6,10 +6,10 @@ from pprint import pprint
 
 url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
 parameters = {
-    'start':'1',
-    'limit':'10',
-    'convert':'USD',
-    'sort':'volume_24h'
+    'start': '1',
+    'limit': '10',
+    'convert': 'USD',
+    'sort': 'volume_24h'
 }
 headers = {
     'Accepts': 'application/json',
@@ -29,9 +29,9 @@ except (ConnectionError, Timeout, TooManyRedirects) as e:
 data = list(data['data'])
 num = 1
 for item in data:
-    print(num, '|',item['id'], '|', item['name'], '|', item['quote']['USD']['volume_24h'])
+    print(num, '|', item['id'], '|', item['name'], '|', item['quote']['USD']['volume_24h'])
     num += 1
 
 pprint(data)
 print('size', len(response.content))
-print('time', t2-t1)
+print('time', t2 - t1)
