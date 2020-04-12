@@ -14,12 +14,13 @@ def db_req(db: str, req: str) -> 'cursor or None':
             respond = cursor.fetchall()
             return respond
         except sqlite3.OperationalError as err:
-            print('OperatinalError:', err)
+            print('OperationalError:', err)
             return
 
 
 if __name__ == '__main__':
     # shows last commit in log.
-    table = db_req('log.db', 'SELECT * FROM log ORDER BY id DESC LIMIT 1;')
-    print('Last fixture id:', table[0][0], 'created at:', table[0][1])
-    pprint(table[0][2])
+    table = db_req('log.db', 'SELECT * FROM cmc_request ORDER BY id DESC LIMIT 1;')
+    print('Last fixture id:', table[0][0], 'created at:', table[0][2])
+    print('API-key', table[0][1])
+    pprint(table[0][3])

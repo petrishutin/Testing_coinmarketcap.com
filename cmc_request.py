@@ -13,7 +13,7 @@ from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 import time
 from datetime import datetime, timedelta
-from settings import API_KEY, UTC_OFFSET, USE_MOCK
+from settings import API_KEY, UTC_OFFSET
 
 
 def cmc_request(api_key: str) -> tuple:
@@ -46,12 +46,15 @@ def cmc_request(api_key: str) -> tuple:
         data = json.loads(response.text)
     except (ConnectionError, Timeout, TooManyRedirects) as e:
         print(e)
-    data = list(data['data'])
+    try:
+        currencies_data = list(data['data'])
+    except KeyError:
+        return
 
     actual_date_count = 0
     actual_date: bool = False
     # Cheking if update date for each coins is matching current date
-    for item in data:
+    for item in currencies_data:
         update_time_utc = item['quote']['USD']['last_updated']
         # brinning UTC date of response to local time with UTC_OFFSET
         update_time_local = datetime.strptime(update_time_utc, '%Y-%m-%dT%H:%M:%S.000Z') + timedelta(hours=UTC_OFFSET)
@@ -59,7 +62,7 @@ def cmc_request(api_key: str) -> tuple:
         current_date = datetime.timetuple(datetime.today())[:3]
         if update_date == current_date:
             actual_date_count += 1
-    if actual_date_count == len(data):
+    if actual_date_count == len(currencies_data):
         actual_date = True
     time_of_responce: int = int((t2 - t1) * 1000)  # returns time in msec
     size_of_responce: int = len(response.content)
@@ -70,6 +73,4 @@ def cmc_request_mock() -> tuple:
     return 300, True, 10000,
 
 if __name__ == '__main__':
-    if USE_MOCK:
-        print(cmc_request_mock())
     print(cmc_request(API_KEY))
