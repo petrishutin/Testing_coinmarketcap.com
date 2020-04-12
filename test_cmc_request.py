@@ -12,24 +12,33 @@ class TestCmcSingleRequestPerfomance(ut.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         """Building fixture for tests"""
+        cls.invalid_api_key = False
         if USE_MOCK:
-            cls.test_tuple = cmc_request(API_KEY)
-        else:
             cls.test_tuple = cmc_request_mock()
-
+        else:
+            try:
+                cls.test_tuple = cmc_request(API_KEY)
+            except KeyError:
+                cls.invalid_api_key = True
     # @ut.skiped
     def test_time_of_response(self):
         """ Checking, If time of response is less than MAX_TIME_OF_RESPONSE. 500 msec by task"""
+        if self.invalid_api_key:
+            raise KeyError("Invalid Api-key")
         self.assertLess(self.test_tuple[0], MAX_TIME_OF_RESPONSE)
 
     # @ut.skiped
     def test_actual_date(self):
         """Checking if update date in response matching current date"""
+        if self.invalid_api_key:
+            raise KeyError("Invalid Api-key")
         self.assertTrue(self.test_tuple[1])
 
     # @ut.skiped
     def test_size_of_resonse(self):
         """Checking in size of response is less than MAX_SIZE_OF_RESPONSE. 10Kb by task"""
+        if self.invalid_api_key:
+            raise KeyError("Invalid Api-key")
         self.assertLess(self.test_tuple[2], MAX_SIZE_OF_RESPONSE)
 
 
