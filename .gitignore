@@ -1,6 +1,0 @@
-log.db
-.gitignore
-**/.idea
-testing_coinmarketcap.iml
-**/__pycache__
-__pycache__
