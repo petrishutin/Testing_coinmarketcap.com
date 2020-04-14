@@ -6,7 +6,7 @@ The task is divided in two stages.
 Define a function sending request to API returning data for 10 currencies with greatest volume in last 24 hours
 DONE: in module cmc_request.py, function - cmc_requests()
 
-Test function if:
+Test API-response if:
     - time of response is less than 500 msec by task
     - latest update date for each currency in is matching local current date
     - size of response is less than 10kb by task
@@ -36,7 +36,7 @@ from time import time
 from datetime import datetime, timedelta
 from cmc_request import cmc_request
 
-API_KEY: str = '7254bf31-94e2-412a-9698-be3d82bca351'  # get the key at https://coinmarketcap.com/api/
+API_KEY: str =''# '7254bf31-94e2-412a-9698-be3d82bca351'  # get the key at https://coinmarketcap.com/api/
 UTC_OFFSET: int = 3  # Set UTC offset in hours for your current location
 LOG: bool = True
 NUMBER_OF_TREADS: int = 8

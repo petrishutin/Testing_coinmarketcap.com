@@ -15,6 +15,7 @@ def cmc_request(api_key: str) -> 'response in json':
         Sorted by valume of trade in last 24 hour
     """
     assert isinstance(api_key, str), 'API-key must be a string'
+
     url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
     parameters = {
         'start': '1',
@@ -32,6 +33,7 @@ def cmc_request(api_key: str) -> 'response in json':
         response = session.get(url, params=parameters)
         return response
     except (ConnectionError, Timeout, TooManyRedirects) as e:
+        print(e)
         return None
     finally:
         session.close()
