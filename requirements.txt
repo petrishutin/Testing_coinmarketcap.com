@@ -1,3 +1,4 @@
 cricket
 numpy
 requests
+pytest
