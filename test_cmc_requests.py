@@ -36,7 +36,7 @@ from time import time
 from datetime import datetime, timedelta
 from cmc_request import cmc_request
 
-API_KEY: str =''# '7254bf31-94e2-412a-9698-be3d82bca351'  # get the key at https://coinmarketcap.com/api/
+API_KEY: str = '7254bf31-94e2-412a-9698-be3d82bca351'  # get the key at https://coinmarketcap.com/api/
 UTC_OFFSET: int = 3  # Set UTC offset in hours for your current location
 LOG: bool = True
 NUMBER_OF_TREADS: int = 8
