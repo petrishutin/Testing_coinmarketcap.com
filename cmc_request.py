@@ -8,7 +8,6 @@ from requests import Session
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 from pprint import pprint
 
-
 def cmc_request(api_key: str) -> 'response in json':
     """ Function receives API key and sends request to coinmarketcap API designated parameters:
         Namber of currencies: 10
@@ -30,7 +29,7 @@ def cmc_request(api_key: str) -> 'response in json':
     session = Session()
     session.headers.update(headers)
     try:
-        response = session.get(url, params=parameters)
+        response = session.request('get', url, parameters)
         return response
     except (ConnectionError, Timeout, TooManyRedirects) as e:
         print(e)
@@ -42,3 +41,4 @@ def cmc_request(api_key: str) -> 'response in json':
 if __name__ == '__main__':
     API_KEY: str = '7254bf31-94e2-412a-9698-be3d82bca351'  # get the kay at https://coinmarketcap.com/api/
     pprint(cmc_request(API_KEY))
+
