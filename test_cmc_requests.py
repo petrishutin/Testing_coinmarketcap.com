@@ -32,7 +32,6 @@ import unittest as ut
 import numpy as np
 import json
 from threading import Thread
-from time import time
 from datetime import datetime, timedelta
 from cmc_request import cmc_request
 
