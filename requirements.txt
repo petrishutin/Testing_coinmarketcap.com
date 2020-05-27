@@ -1,4 +1,4 @@
 cricket
-numpy
+numpy == 1.18.3
 requests
-pytest
+pytest == 5.4.1
