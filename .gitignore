@@ -1,0 +1,5 @@
+.idea
+.pytest_cache
+pyenv
+venv
+log_cmc_requests.csv
